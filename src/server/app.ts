@@ -193,6 +193,18 @@ export function buildApp(ctx: AppContext): Hono<Env> {
     return c.json({ count })
   })
 
+  app.get('/api/live/feed', async (c) => {
+    const since = c.req.query('since') ?? null
+    const rawLimit = Number(c.req.query('limit') ?? '24')
+    const limit = Math.min(40, Number.isFinite(rawLimit) && rawLimit > 0 ? rawLimit : 24)
+    const [listings, freshCount] = await Promise.all([
+      ctx.db.latestPublished(limit),
+      since ? ctx.listings.newListingsCountSince(since) : Promise.resolve(0),
+    ])
+    const sinceCheckpoint = new Date(listings[0]?.publishedAt ?? listings[0]?.firstSeenAt ?? new Date().toISOString()).toISOString()
+    return c.json({ listings, since: sinceCheckpoint, newSinceGiven: freshCount })
+  })
+
   app.post('/api/outclick', async (c) => {
     const body = await c.req.json().catch(() => null)
     const input = validate(outclickSchema, body ?? {})

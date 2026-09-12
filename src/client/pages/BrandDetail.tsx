@@ -40,7 +40,7 @@ export function BrandDetailPage() {
   if (loading) {
     return (
       <div className="mx-auto max-w-6xl">
-        <div className="mt-10 h-10 w-56 animate-pulse rounded bg-neutral-200/70" />
+        <div className="mt-10 h-10 w-56 animate-pulse rounded bg-neutral-800" />
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {Array.from({ length: 8 }).map((_, i) => (
             <ListingCardSkeleton key={i} />
@@ -56,7 +56,7 @@ export function BrandDetailPage() {
         <EmptyState
           title="Brand not found"
           description="This brand might not be in the catalogue yet."
-          action={<Link to="/brands"><button className="text-sm font-medium text-neutral-600 underline underline-offset-4">Browse all brands</button></Link>}
+          action={<Link to="/brands"><button className="text-sm font-medium text-neutral-400 underline underline-offset-4">Browse all brands</button></Link>}
         />
       </div>
     )
@@ -67,19 +67,19 @@ export function BrandDetailPage() {
   return (
     <div className="mx-auto max-w-6xl">
       <div className="mt-10">
-        <nav className="text-xs text-neutral-400">
-          <Link to="/brands" className="hover:text-neutral-700">Brands</Link>
+        <nav className="text-xs text-neutral-500">
+          <Link to="/brands" className="hover:text-neutral-200">Brands</Link>
           {' / '}
-          <span className="text-neutral-600">{brand.name}</span>
+          <span className="text-neutral-400">{brand.name}</span>
         </nav>
         <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <h1 className="text-3xl font-bold tracking-tight text-neutral-900">{brand.name}</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-neutral-100">{brand.name}</h1>
           {brand.listingCount !== undefined && (
-            <span className="text-sm text-neutral-500">{brand.listingCount} listings</span>
+            <span className="text-sm text-neutral-400">{brand.listingCount} listings</span>
           )}
         </div>
         {brand.aliases.length > 0 && (
-          <p className="mt-2 text-sm text-neutral-500">
+          <p className="mt-2 text-sm text-neutral-400">
             Also known as: {brand.aliases.join(', ')}
           </p>
         )}
@@ -87,7 +87,7 @@ export function BrandDetailPage() {
 
       {models.length > 0 && (
         <section className="mt-8">
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-400">
             Popular models
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -95,7 +95,7 @@ export function BrandDetailPage() {
               <Link
                 key={model.id}
                 to={`/search?q=${encodeURIComponent(`${brand.name} ${model.name}`)}`}
-                className="rounded-full border border-neutral-200 bg-white px-3.5 py-1.5 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:text-neutral-900"
+                className="rounded-full border border-neutral-800 bg-neutral-900 px-3.5 py-1.5 text-sm font-medium text-neutral-300 transition-colors hover:border-neutral-500 hover:text-neutral-50"
               >
                 {brand.name} {model.name}
               </Link>
@@ -105,7 +105,7 @@ export function BrandDetailPage() {
       )}
 
       <section className="mt-10">
-        <h2 className="mb-4 text-lg font-semibold tracking-tight text-neutral-900">Latest {brand.name} listings</h2>
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-neutral-100">Latest {brand.name} listings</h2>
         {recentListings.length === 0 ? (
           <EmptyState title="No listings yet" description={`No ${brand.name} listings have been ingested yet.`} />
         ) : (

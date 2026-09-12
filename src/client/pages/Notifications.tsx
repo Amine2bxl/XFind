@@ -45,8 +45,8 @@ export function NotificationsPage() {
     <div className="mx-auto max-w-3xl">
       <div className="mt-10 flex items-end justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">Notifications</h1>
-          <p className="mt-1 text-sm text-neutral-500">Alerts from your saved searches.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-neutral-100 sm:text-3xl">Notifications</h1>
+          <p className="mt-1 text-sm text-neutral-400">Alerts from your saved searches.</p>
         </div>
         {unread > 0 && <Button variant="secondary" onClick={markAllRead}>Mark all as read</Button>}
       </div>
@@ -69,26 +69,26 @@ export function NotificationsPage() {
               return (
                 <div
                   key={notification.id}
-                  className={`flex items-center gap-4 rounded-2xl border bg-white p-3 transition-colors ${
-                    isUnread ? 'border-neutral-300' : 'border-neutral-200'
+                  className={`flex items-center gap-4 rounded-2xl border bg-neutral-900 p-3 transition-colors ${
+                    isUnread ? 'border-neutral-700' : 'border-neutral-800'
                   }`}
                 >
                   {listing ? (
                     <Link to={`/listing/${listing.id}`} onClick={() => markRead(notification.id)} className="shrink-0">
-                      <ImageWithFallback src={listing.images[0]} alt="" className="h-16 w-16 rounded-xl border border-neutral-100" />
+                      <ImageWithFallback src={listing.images[0]} alt="" className="h-16 w-16 rounded-xl border border-neutral-800" />
                     </Link>
                   ) : (
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-400">
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-neutral-800 text-neutral-500">
                       <BellIcon />
                     </div>
                   )}
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <p className={`text-sm font-medium ${isUnread ? 'text-neutral-900' : 'text-neutral-700'}`}>{notification.title}</p>
+                      <p className={`text-sm font-medium ${isUnread ? 'text-neutral-100' : 'text-neutral-300'}`}>{notification.title}</p>
                       {isUnread && <Badge tone="info">New</Badge>}
                     </div>
-                    <p className="mt-0.5 truncate text-sm text-neutral-600">{notification.message}</p>
-                    <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-neutral-400">
+                    <p className="mt-0.5 truncate text-sm text-neutral-400">{notification.message}</p>
+                    <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-neutral-500">
                       <span>{relativeTime(notification.createdAt)}</span>
                       {listing && (
                         <>
@@ -103,7 +103,7 @@ export function NotificationsPage() {
                     <Link
                       to={`/listing/${listing.id}`}
                       onClick={() => markRead(notification.id)}
-                      className="shrink-0 rounded-lg border border-neutral-200 px-3 py-1.5 text-xs font-medium text-neutral-700 hover:border-neutral-400"
+                      className="shrink-0 rounded-lg border border-neutral-800 px-3 py-1.5 text-xs font-medium text-neutral-300 hover:border-neutral-500"
                     >
                       View
                     </Link>

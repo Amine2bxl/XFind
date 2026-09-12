@@ -1,6 +1,8 @@
 node_modules
 dist
 data
+!src/server/seed/data/
+!src/server/seed/data/*
 .env
 .env.local
 *.log

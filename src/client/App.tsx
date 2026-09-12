@@ -29,7 +29,7 @@ function RequireAuth({ children }: { children: ReactNode }) {
   if (loading) {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
-        <span className="h-6 w-6 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-900" />
+        <span className="h-6 w-6 animate-spin rounded-full border-2 border-neutral-700 border-t-neutral-900" />
       </div>
     )
   }
@@ -45,7 +45,7 @@ function RequireAdmin({ children }: { children: ReactNode }) {
   if (loading) {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
-        <span className="h-6 w-6 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-900" />
+        <span className="h-6 w-6 animate-spin rounded-full border-2 border-neutral-700 border-t-neutral-900" />
       </div>
     )
   }
@@ -53,7 +53,7 @@ function RequireAdmin({ children }: { children: ReactNode }) {
   if (!user.isAdmin) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-16">
-        <p className="text-sm text-neutral-600">This area is restricted to administrators.</p>
+        <p className="text-sm text-neutral-400">This area is restricted to administrators.</p>
       </div>
     )
   }
@@ -65,11 +65,11 @@ function Layout({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="mx-auto w-full max-w-7xl flex-1 px-3 sm:px-6">{children}</main>
-      <footer className="mt-16 border-t border-neutral-200 py-8">
+      <footer className="mt-16 border-t border-neutral-800 py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="flex flex-col items-center justify-between gap-3 text-center text-xs text-neutral-500 sm:flex-row sm:text-left">
+          <div className="flex flex-col items-center justify-between gap-3 text-center text-xs text-neutral-400 sm:flex-row sm:text-left">
             <p>
-              <span className="font-semibold text-neutral-700">XFind</span> — search intelligence for marketplaces.
+              <span className="font-semibold text-neutral-300">XFind</span> — search intelligence for marketplaces.
             </p>
             <p>
               Development mode uses clearly labelled sample data. Live Vinted data is never faked.

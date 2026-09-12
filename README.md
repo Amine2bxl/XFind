@@ -22,9 +22,10 @@ bun run dev
 - API (Hono/Bun): <http://localhost:3001>
 
 On first boot the development database (`./data/xfind.db`) is created and seeded
-with a realistic sample catalogue: 12 brands, 13 categories, 36 models and a
-batch of listings. All sample listings are labelled "Dev data" in the UI and are
-never presented as live Vinted listings.
+with a realistic sample catalogue: 18 brands (Nike, Adidas, Prada, Hermès,
+Lacoste, Zara, Gucci, Stone Island, Moncler, and more), 13 categories, dozens of
+models and a batch of listings. All sample listings are labelled "Dev data" in
+the UI and are never presented as live Vinted listings.
 
 ## Scripts
 

@@ -42,8 +42,8 @@ export function FavoritesPage() {
   return (
     <div className="mx-auto max-w-6xl">
       <div className="mt-10">
-        <h1 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">Favorites</h1>
-        <p className="mt-1 text-sm text-neutral-500">Listings you've saved for later.</p>
+        <h1 className="text-2xl font-bold tracking-tight text-neutral-100 sm:text-3xl">Favorites</h1>
+        <p className="mt-1 text-sm text-neutral-400">Listings you've saved for later.</p>
       </div>
 
       <div className="mt-6">

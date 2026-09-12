@@ -107,12 +107,12 @@ export function ListingDetailPage() {
 
   return (
     <div className="mx-auto max-w-6xl">
-      <nav className="py-4 text-xs text-neutral-400">
-        <Link to="/search" className="hover:text-neutral-700">
+      <nav className="py-4 text-xs text-neutral-500">
+        <Link to="/search" className="hover:text-neutral-200">
           Search
         </Link>
         {' / '}
-        {listing.category ? <Link to={`/search?categoryId=${listing.categoryId ?? ''}`} className="hover:text-neutral-700">{listing.category}</Link> : 'Listing'}
+        {listing.category ? <Link to={`/search?categoryId=${listing.categoryId ?? ''}`} className="hover:text-neutral-200">{listing.category}</Link> : 'Listing'}
       </nav>
 
       <div className="grid gap-8 lg:grid-cols-2">
@@ -121,7 +121,7 @@ export function ListingDetailPage() {
           <ImageWithFallback
             src={images[activeImage]}
             alt={listing.title}
-            className="aspect-[4/5] w-full rounded-2xl border border-neutral-200"
+            className="aspect-[4/5] w-full rounded-2xl border border-neutral-800"
             eager
           />
           {images.length > 1 && (
@@ -132,11 +132,11 @@ export function ListingDetailPage() {
                   onClick={() => setActiveImage(i)}
                   className={
                     i === activeImage
-                      ? 'rounded-lg ring-2 ring-neutral-900 ring-offset-2'
+                      ? 'rounded-lg ring-2 ring-neutral-100 ring-offset-2'
                       : 'opacity-70 hover:opacity-100'
                   }
                 >
-                  <ImageWithFallback src={img} alt="" className="h-16 w-16 rounded-lg border border-neutral-200" />
+                  <ImageWithFallback src={img} alt="" className="h-16 w-16 rounded-lg border border-neutral-800" />
                 </button>
               ))}
             </div>
@@ -150,15 +150,15 @@ export function ListingDetailPage() {
             {relevance && <MatchBadge score={relevance.score} />}
           </div>
 
-          <h1 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-neutral-900 sm:text-3xl">
+          <h1 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-neutral-100 sm:text-3xl">
             {listing.title}
           </h1>
 
-          <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-neutral-500">
+          <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-neutral-400">
             {listing.brand && (
               <span>
                 Brand:{' '}
-                <Link to={listing.brandId ? `/brand/${listing.brandId}` : '/brands'} className="font-medium text-neutral-800 hover:underline">
+                <Link to={listing.brandId ? `/brand/${listing.brandId}` : '/brands'} className="font-medium text-neutral-200 hover:underline">
                   {listing.brand}
                 </Link>
               </span>
@@ -167,7 +167,7 @@ export function ListingDetailPage() {
             {listing.category && <span>Category: {listing.category}</span>}
           </div>
 
-          <div className="mt-6 text-3xl font-bold tracking-tight text-neutral-900">
+          <div className="mt-6 text-3xl font-bold tracking-tight text-neutral-100">
             {formatPrice(listing.price, listing.currency)}
           </div>
 
@@ -184,7 +184,7 @@ export function ListingDetailPage() {
           </div>
 
           {listing.description && (
-            <p className="mt-6 rounded-xl border border-neutral-200 bg-white p-4 text-sm leading-relaxed text-neutral-700">
+            <p className="mt-6 rounded-xl border border-neutral-800 bg-neutral-900 p-4 text-sm leading-relaxed text-neutral-300">
               {listing.description}
             </p>
           )}
@@ -200,7 +200,7 @@ export function ListingDetailPage() {
             ) : (
               <Button size="lg" disabled title="External purchase is only available for live Vinted listings.">
                 Buy on Vinted
-                <Badge tone="neutral" className="bg-white/20 text-white">via provider</Badge>
+                <Badge tone="neutral" className="bg-neutral-900/20 text-white">via provider</Badge>
               </Button>
             )}
             <Button size="lg" variant="secondary" onClick={toggleFavorite} disabled={!user}>
@@ -210,12 +210,12 @@ export function ListingDetailPage() {
               </svg>
             </Button>
             {!user && (
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-400">
                 <Link to="/login" className="font-medium underline underline-offset-2">Sign in</Link> to save listings.
               </p>
             )}
             {isMock && (
-              <p className="mt-1 text-xs text-neutral-400">
+              <p className="mt-1 text-xs text-neutral-500">
                 Transactions happen on the marketplace. This development listing has no external checkout.
               </p>
             )}
@@ -225,7 +225,7 @@ export function ListingDetailPage() {
 
       {related.length > 0 && (
         <section className="mt-14">
-          <h2 className="mb-4 text-lg font-semibold tracking-tight text-neutral-900">Similar listings</h2>
+          <h2 className="mb-4 text-lg font-semibold tracking-tight text-neutral-100">Similar listings</h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {related.map((l) => (
               <ListingCard key={l.id} listing={{ ...l, relevanceScore: 0 } as ListingWithRelevance} />
@@ -239,9 +239,9 @@ export function ListingDetailPage() {
 
 function Meta({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-neutral-200 bg-white px-3 py-2.5">
-      <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400">{label}</p>
-      <p className="mt-0.5 truncate text-sm font-medium text-neutral-900" title={value}>
+    <div className="rounded-xl border border-neutral-800 bg-neutral-900 px-3 py-2.5">
+      <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">{label}</p>
+      <p className="mt-0.5 truncate text-sm font-medium text-neutral-100" title={value}>
         {value}
       </p>
     </div>

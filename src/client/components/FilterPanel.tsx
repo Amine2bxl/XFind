@@ -84,17 +84,17 @@ export function FilterPanel({
   return (
     <div className="flex flex-col gap-6">
       <section>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">Brand</h4>
+        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-400">Brand</h4>
         <input
           value={brandQuery}
           onChange={(e) => setBrandQuery(e.target.value)}
           placeholder="Find a brand..."
-          className="mb-2 h-9 w-full rounded-lg border border-neutral-200 bg-white px-3 text-sm placeholder:text-neutral-400 outline-none focus:border-neutral-400"
+          className="mb-2 h-9 w-full rounded-lg border border-neutral-800 bg-neutral-900 px-3 text-sm placeholder:text-neutral-500 outline-none focus:border-neutral-500"
         />
         <select
           value={filters.brandId ?? ''}
           onChange={(e) => set({ brandId: e.target.value || undefined, brand: undefined })}
-          className="h-9 w-full rounded-lg border border-neutral-200 bg-white px-2 text-sm outline-none focus:border-neutral-400"
+          className="h-9 w-full rounded-lg border border-neutral-800 bg-neutral-900 px-2 text-sm outline-none focus:border-neutral-500"
           size={Math.min(6, Math.max(1, brands.length))}
           style={{ minHeight: 44 }}
         >
@@ -108,11 +108,11 @@ export function FilterPanel({
       </section>
 
       <section>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">Category</h4>
+        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-400">Category</h4>
         <select
           value={filters.categoryId ?? ''}
           onChange={(e) => set({ categoryId: e.target.value || undefined })}
-          className="h-9 w-full rounded-lg border border-neutral-200 bg-white px-2 text-sm outline-none focus:border-neutral-400"
+          className="h-9 w-full rounded-lg border border-neutral-800 bg-neutral-900 px-2 text-sm outline-none focus:border-neutral-500"
         >
           <option value="">Any category</option>
           {flatCategories.map((c) => (
@@ -124,11 +124,11 @@ export function FilterPanel({
       </section>
 
       <section>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">Size</h4>
+        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-400">Size</h4>
         <select
           value={filters.size ?? ''}
           onChange={(e) => set({ size: e.target.value || undefined })}
-          className="h-9 w-full rounded-lg border border-neutral-200 bg-white px-2 text-sm outline-none focus:border-neutral-400"
+          className="h-9 w-full rounded-lg border border-neutral-800 bg-neutral-900 px-2 text-sm outline-none focus:border-neutral-500"
         >
           <option value="">Any size</option>
           {SIZE_OPTIONS.map((s) => (
@@ -140,7 +140,7 @@ export function FilterPanel({
       </section>
 
       <section>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">Price (EUR)</h4>
+        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-400">Price (EUR)</h4>
         <div className="flex items-center gap-2">
           <Input
             type="number"
@@ -150,7 +150,7 @@ export function FilterPanel({
             onChange={(e) => set({ minPrice: e.target.value === '' ? undefined : Number(e.target.value) })}
             className="h-9"
           />
-          <span className="text-neutral-400">–</span>
+          <span className="text-neutral-500">–</span>
           <Input
             type="number"
             min={0}
@@ -163,15 +163,15 @@ export function FilterPanel({
       </section>
 
       <section>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">Condition</h4>
+        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-400">Condition</h4>
         <div className="flex flex-col gap-1.5">
           {CONDITION_OPTIONS.map((option) => (
-            <label key={option.value} className="flex cursor-pointer items-center gap-2 text-sm text-neutral-700">
+            <label key={option.value} className="flex cursor-pointer items-center gap-2 text-sm text-neutral-300">
               <input
                 type="checkbox"
                 checked={(filters.condition ?? []).includes(option.value)}
                 onChange={() => toggleIn('condition', option.value)}
-                className="h-4 w-4 rounded border-neutral-300 accent-neutral-900"
+                className="h-4 w-4 rounded border-neutral-700 accent-neutral-100"
               />
               {option.label}
             </label>
@@ -180,7 +180,7 @@ export function FilterPanel({
       </section>
 
       <section>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">Colour</h4>
+        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-400">Colour</h4>
         <div className="flex flex-wrap gap-1.5">
           {COLOR_OPTIONS.map((color) => {
             const active = (filters.color ?? []).includes(color.toLowerCase())
@@ -192,7 +192,7 @@ export function FilterPanel({
                   'rounded-full border px-2.5 py-1 text-xs font-medium transition-colors',
                   active
                     ? 'border-neutral-900 bg-neutral-900 text-white'
-                    : 'border-neutral-200 bg-white text-neutral-700 hover:border-neutral-400',
+                    : 'border-neutral-800 bg-neutral-900 text-neutral-300 hover:border-neutral-500',
                 )}
               >
                 {color}
@@ -203,7 +203,7 @@ export function FilterPanel({
       </section>
 
       <section>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">Gender</h4>
+        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-400">Gender</h4>
         <Field label="">
           <Select
             value={filters.gender ?? ''}

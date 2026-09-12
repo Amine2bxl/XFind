@@ -49,7 +49,7 @@ export function ListingCard({
   return (
     <Link
       to={`/listing/${listing.id}`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white transition-shadow hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+      className="group flex flex-col overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900 transition-shadow hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
     >
       <div className="relative">
         <ImageWithFallback
@@ -61,8 +61,8 @@ export function ListingCard({
           onClick={toggleFavorite}
           aria-label={isFavorite ? 'Remove from favorites' : 'Save to favorites'}
           className={cn(
-            'absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-sm backdrop-blur transition-colors hover:bg-white',
-            isFavorite ? 'text-red-500' : 'text-neutral-500 hover:text-neutral-800',
+            'absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-neutral-950/85 shadow-sm backdrop-blur transition-colors hover:bg-neutral-900',
+            isFavorite ? 'text-red-500' : 'text-neutral-400 hover:text-neutral-200',
           )}
         >
           <svg viewBox="0 0 24 24" className="h-4 w-4" fill={isFavorite ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.8">
@@ -82,21 +82,21 @@ export function ListingCard({
       </div>
       <div className="flex flex-1 flex-col gap-1 p-3">
         {listing.brand && (
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-neutral-500">
             {listing.brand}
           </p>
         )}
-        <p className="line-clamp-2 text-sm font-medium leading-snug text-neutral-900">
+        <p className="line-clamp-2 text-sm font-medium leading-snug text-neutral-100">
           {listing.title}
         </p>
         <div className="mt-auto flex items-center justify-between pt-2">
-          <p className="text-[15px] font-bold text-neutral-900">
+          <p className="text-[15px] font-bold text-neutral-100">
             {formatPrice(listing.price, listing.currency)}
           </p>
-          <p className="text-xs text-neutral-500">{relativeTime(listing.publishedAt ?? listing.firstSeenAt)}</p>
+          <p className="text-xs text-neutral-400">{relativeTime(listing.publishedAt ?? listing.firstSeenAt)}</p>
         </div>
         {(listing.size || listing.condition) && (
-          <p className="text-xs text-neutral-500">
+          <p className="text-xs text-neutral-400">
             {[listing.size, formatCondition(listing.condition)].filter(Boolean).join(' · ')}
           </p>
         )}
@@ -108,7 +108,7 @@ export function ListingCard({
 export function MatchBadge({ score }: { score: number }) {
   const tone = score >= 80 ? 'success' : score >= 60 ? 'warning' : 'neutral'
   return (
-    <Badge tone={tone} className="bg-white/90 backdrop-blur">
+    <Badge tone={tone} className="bg-neutral-950/85 backdrop-blur">
       {score}% match
     </Badge>
   )
@@ -128,16 +128,16 @@ function formatCondition(condition: string | null | undefined): string | null {
 
 export function ListingCardSkeleton() {
   return (
-    <div className="flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white">
-      <div className="aspect-[4/5] w-full animate-pulse bg-neutral-100" />
+    <div className="flex flex-col overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900">
+      <div className="aspect-[4/5] w-full animate-pulse bg-neutral-800" />
       <div className="flex flex-1 flex-col gap-2 p-3">
-        <div className="h-2.5 w-16 animate-pulse rounded bg-neutral-100" />
-        <div className="h-3.5 w-4/5 animate-pulse rounded bg-neutral-100" />
+        <div className="h-2.5 w-16 animate-pulse rounded bg-neutral-800" />
+        <div className="h-3.5 w-4/5 animate-pulse rounded bg-neutral-800" />
         <div className="mt-auto flex items-center justify-between pt-2">
-          <div className="h-4 w-14 animate-pulse rounded bg-neutral-100" />
-          <div className="h-3 w-10 animate-pulse rounded bg-neutral-100" />
+          <div className="h-4 w-14 animate-pulse rounded bg-neutral-800" />
+          <div className="h-3 w-10 animate-pulse rounded bg-neutral-800" />
         </div>
-        <div className="h-3 w-24 animate-pulse rounded bg-neutral-100" />
+        <div className="h-3 w-24 animate-pulse rounded bg-neutral-800" />
       </div>
     </div>
   )

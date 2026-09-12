@@ -104,8 +104,8 @@ export function SavedSearchesPage() {
     <div className="mx-auto max-w-4xl">
       <div className="mt-10 flex items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">Saved searches</h1>
-          <p className="mt-1 text-sm text-neutral-500">Get alerted the moment a matching listing appears.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-neutral-100 sm:text-3xl">Saved searches</h1>
+          <p className="mt-1 text-sm text-neutral-400">Get alerted the moment a matching listing appears.</p>
         </div>
         <Button onClick={() => setFormOpen(true)}>New saved search</Button>
       </div>
@@ -114,7 +114,7 @@ export function SavedSearchesPage() {
         {loading ? (
           <div className="flex justify-center py-20"><Spinner className="h-7 w-7" /></div>
         ) : error ? (
-          <div className="py-10 text-center text-sm text-neutral-500">{error}</div>
+          <div className="py-10 text-center text-sm text-neutral-400">{error}</div>
         ) : searches.length === 0 ? (
           <EmptyState
             title="No saved searches yet"
@@ -128,11 +128,11 @@ export function SavedSearchesPage() {
             {searches.map((search) => {
               const summary = searchSummary(search)
               return (
-                <div key={search.id} className="rounded-2xl border border-neutral-200 bg-white p-4">
+                <div key={search.id} className="rounded-2xl border border-neutral-800 bg-neutral-900 p-4">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="font-semibold text-neutral-900">{search.name}</h3>
+                        <h3 className="font-semibold text-neutral-100">{search.name}</h3>
                         <Badge tone={search.isActive ? 'success' : 'neutral'}>
                           {search.isActive ? 'Active' : 'Paused'}
                         </Badge>
@@ -141,11 +141,11 @@ export function SavedSearchesPage() {
                         )}
                       </div>
                       {summary.length > 0 && (
-                        <p className="mt-1 truncate text-sm text-neutral-500">{summary.join(' · ')}</p>
+                        <p className="mt-1 truncate text-sm text-neutral-400">{summary.join(' · ')}</p>
                       )}
-                      <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-neutral-400">
+                      <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-neutral-500">
                         <span>
-                          <strong className="font-semibold text-neutral-600">{search.matchCount}</strong> matches
+                          <strong className="font-semibold text-neutral-400">{search.matchCount}</strong> matches
                         </span>
                         <span>
                           Last match:{' '}
@@ -168,12 +168,12 @@ export function SavedSearchesPage() {
                       >
                         Edit
                       </Button>
-                      <Button variant="ghost" size="sm" onClick={() => remove(search)} className="text-red-600 hover:bg-red-50">
+                      <Button variant="ghost" size="sm" onClick={() => remove(search)} className="text-red-400 hover:bg-red-950/40">
                         Delete
                       </Button>
                     </div>
                   </div>
-                  <div className="mt-3 border-t border-neutral-100 pt-1">
+                  <div className="mt-3 border-t border-neutral-800 pt-1">
                     <Toggle
                       checked={search.isActive}
                       onChange={() => toggleActive(search)}
@@ -259,18 +259,18 @@ function SavedSearchForm({
     >
       <div className="flex flex-col gap-4">
         <label className="flex flex-col gap-1.5">
-          <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500">Name</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">Name</span>
           <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Prada America's Cup — size 42" />
         </label>
         <label className="flex flex-col gap-1.5">
-          <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500">Search query</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">Search query</span>
           <Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="e.g. prada america's cup" />
         </label>
         <label className="flex flex-col gap-1.5">
-          <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500">Max price (EUR)</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">Max price (EUR)</span>
           <Input type="number" min={0} value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} placeholder="250" />
         </label>
-        <p className="text-xs text-neutral-400">
+        <p className="text-xs text-neutral-500">
           Tip: use the search page and add structured filters (brand, size, condition, colour) — richer saved searches get richer matches.
         </p>
       </div>

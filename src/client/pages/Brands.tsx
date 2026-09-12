@@ -41,8 +41,8 @@ export function BrandsPage() {
   return (
     <div className="mx-auto max-w-5xl">
       <div className="mt-10 max-w-xl">
-        <h1 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">Brands</h1>
-        <p className="mt-1 text-sm text-neutral-500">
+        <h1 className="text-2xl font-bold tracking-tight text-neutral-100 sm:text-3xl">Brands</h1>
+        <p className="mt-1 text-sm text-neutral-400">
           Canonical brands with unified names and aliases — so “NIKE”, “Nike SB” and “Jordan” all resolve cleanly.
         </p>
         <Input
@@ -57,7 +57,7 @@ export function BrandsPage() {
       {loading && brands.length === 0 ? (
         <div className="mt-8 flex flex-wrap gap-3">
           {Array.from({ length: 16 }).map((_, i) => (
-            <div key={i} className="h-10 w-32 animate-pulse rounded-full bg-neutral-200/70" />
+            <div key={i} className="h-10 w-32 animate-pulse rounded-full bg-neutral-800" />
           ))}
         </div>
       ) : brands.length === 0 ? (
@@ -68,7 +68,7 @@ export function BrandsPage() {
         <div className="mt-8 flex flex-col gap-8">
           {grouped.map(([letter, items]) => (
             <section key={letter}>
-              <h2 className="mb-3 border-b border-neutral-200 pb-1 text-sm font-semibold uppercase tracking-wider text-neutral-500">
+              <h2 className="mb-3 border-b border-neutral-800 pb-1 text-sm font-semibold uppercase tracking-wider text-neutral-400">
                 {letter}
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -76,11 +76,11 @@ export function BrandsPage() {
                   <Link
                     key={brand.id}
                     to={`/brand/${brand.slug}`}
-                    className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white py-1.5 pl-4 pr-3 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:text-neutral-900"
+                    className="flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 py-1.5 pl-4 pr-3 text-sm font-medium text-neutral-300 transition-colors hover:border-neutral-500 hover:text-neutral-50"
                   >
                     {brand.name}
                     {brand.listingCount !== undefined && (
-                      <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-[11px] text-neutral-500">
+                      <span className="rounded-full bg-neutral-800 px-2 py-0.5 text-[11px] text-neutral-400">
                         {brand.listingCount}
                       </span>
                     )}

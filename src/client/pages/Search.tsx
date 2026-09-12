@@ -7,6 +7,7 @@ import { useSeo } from '../lib/seo'
 import { SearchBar } from '../components/SearchBar'
 import { ListingCard, ListingCardSkeleton } from '../components/ListingCard'
 import { FilterPanel } from '../components/FilterPanel'
+import { NewListingsFeed } from '../components/NewListingsFeed'
 import { Badge, Button, EmptyState, ErrorState, Modal, Select } from '../components/ui'
 
 const SORT_OPTIONS = [
@@ -185,7 +186,7 @@ export function SearchPage() {
             </Button>
           </div>
           <div className="flex items-center gap-2">
-            <span className="hidden text-xs text-neutral-500 sm:block">Sort by</span>
+            <span className="hidden text-xs text-neutral-400 sm:block">Sort by</span>
             <Select value={filters.sort ?? 'newest'} onChange={(e) => onSort(e.target.value)} className="h-9 w-40">
               {SORT_OPTIONS.map((s) => (
                 <option key={s.value} value={s.value}>
@@ -199,11 +200,11 @@ export function SearchPage() {
 
       <div className="mt-6 flex gap-8">
         <aside className="hidden w-56 shrink-0 lg:block">
-          <div className="sticky top-20 rounded-2xl border border-neutral-200 bg-white p-4">
+          <div className="sticky top-20 rounded-2xl border border-neutral-800 bg-neutral-900 p-4">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-neutral-900">Filters</h3>
+              <h3 className="text-sm font-semibold text-neutral-100">Filters</h3>
               {filterCount > 0 && (
-                <button onClick={() => updateFilters({ sort: filters.sort })} className="text-xs font-medium text-neutral-500 hover:text-neutral-900">
+                <button onClick={() => updateFilters({ sort: filters.sort })} className="text-xs font-medium text-neutral-400 hover:text-neutral-50">
                   Reset
                 </button>
               )}
@@ -216,18 +217,22 @@ export function SearchPage() {
           {newCount > 0 && (
             <button
               onClick={showNew}
-              className="mb-4 flex w-full items-center justify-between gap-3 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-left"
+              className="mb-4 flex w-full items-center justify-between gap-3 rounded-xl border border-blue-800 bg-blue-950/40 px-4 py-3 text-left"
             >
-              <span className="text-sm font-medium text-blue-800">
+              <span className="text-sm font-medium text-blue-200">
                 {newCount} new listing{newCount > 1 ? 's' : ''} available
               </span>
-              <span className="text-sm font-semibold text-blue-700 underline underline-offset-2">Show new listings</span>
+              <span className="text-sm font-semibold text-blue-300 underline underline-offset-2">Show new listings</span>
             </button>
           )}
 
+          <div className="mb-6">
+            <NewListingsFeed />
+          </div>
+
           {intentChips.length > 0 && (
             <div className="mb-4 flex flex-wrap items-center gap-2">
-              <span className="text-xs text-neutral-400">Interpreted as:</span>
+              <span className="text-xs text-neutral-500">Interpreted as:</span>
               {intentChips.map((chip) => (
                 <Badge key={chip.label} tone={chip.tone}>
                   {chip.label}
@@ -237,7 +242,7 @@ export function SearchPage() {
           )}
 
           <div className="mb-4 flex items-center justify-between">
-            <p className="text-sm text-neutral-500">
+            <p className="text-sm text-neutral-400">
               {loading && total === null
                 ? 'Searching...'
                 : total !== null
@@ -245,10 +250,10 @@ export function SearchPage() {
                   : ''}
             </p>
             <div className="flex items-center gap-3">
-              {saveMsg && <span className="text-xs text-emerald-600">{saveMsg}</span>}
+              {saveMsg && <span className="text-xs text-emerald-400">{saveMsg}</span>}
               <button
                 onClick={() => void saveCurrentSearch()}
-                className="text-xs font-medium text-neutral-500 hover:text-neutral-900"
+                className="text-xs font-medium text-neutral-400 hover:text-neutral-50"
               >
                 Save this search
               </button>

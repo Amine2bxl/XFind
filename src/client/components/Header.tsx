@@ -14,7 +14,7 @@ function NavItem({ to, label, badge, onClick }: { to: string; label: string; bad
       className={({ isActive }) =>
         cn(
           'relative flex h-9 items-center gap-1.5 rounded-lg px-3 text-sm font-medium transition-colors',
-          isActive ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900',
+          isActive ? 'bg-neutral-800 text-neutral-100' : 'text-neutral-400 hover:bg-neutral-800 hover:text-neutral-50',
         )
       }
     >
@@ -95,7 +95,7 @@ export function Header() {
   )
 
   return (
-    <header className="sticky top-0 z-30 border-b border-neutral-200 bg-white/85 backdrop-blur-md">
+    <header className="sticky top-0 z-30 border-b border-neutral-800 bg-neutral-950/85 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-7xl items-center gap-3 px-3 sm:px-6">
         <Link to="/" className="flex items-center gap-2 shrink-0" aria-label="XFind home">
           <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-neutral-900 text-white">
@@ -118,7 +118,7 @@ export function Header() {
         <div className="flex items-center gap-1">
           <Link
             to="/notifications"
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-neutral-400 transition-colors hover:bg-neutral-800 hover:text-neutral-50"
             aria-label="Notifications"
           >
             <span className="relative">
@@ -144,10 +144,10 @@ export function Header() {
                 {initials(user.name ?? user.email)}
               </button>
               {profileOpen && (
-                <div className="absolute right-0 top-11 w-56 overflow-hidden rounded-xl border border-neutral-200 bg-white p-1 shadow-lg">
-                  <div className="border-b border-neutral-100 px-3 py-2">
-                    <p className="truncate text-sm font-medium text-neutral-900">{user.name ?? 'Account'}</p>
-                    <p className="truncate text-xs text-neutral-500">{user.email}</p>
+                <div className="absolute right-0 top-11 w-56 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900 p-1 shadow-lg">
+                  <div className="border-b border-neutral-800 px-3 py-2">
+                    <p className="truncate text-sm font-medium text-neutral-100">{user.name ?? 'Account'}</p>
+                    <p className="truncate text-xs text-neutral-400">{user.email}</p>
                   </div>
                   <div className="py-1">
                     <MenuLink to="/saved-searches" label="Saved searches" />
@@ -158,7 +158,7 @@ export function Header() {
                   </div>
                   <button
                     onClick={onLogout}
-                    className="w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-red-600 hover:bg-red-50"
+                    className="w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-red-400 hover:bg-red-950/40"
                   >
                     Sign out
                   </button>
@@ -168,7 +168,7 @@ export function Header() {
           ) : (
             <Link
               to="/login"
-              className="ml-1 h-9 rounded-lg px-4 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-100"
+              className="ml-1 h-9 rounded-lg px-4 text-sm font-medium text-neutral-300 transition-colors hover:bg-neutral-800"
             >
               Sign in
             </Link>
@@ -176,7 +176,7 @@ export function Header() {
         </div>
       </div>
       {menuOpen && (
-        <div className="border-t border-neutral-100 px-4 py-2 lg:hidden">
+        <div className="border-t border-neutral-800 px-4 py-2 lg:hidden">
           <div className="flex flex-col gap-0.5">
             <MenuLink to="/saved-searches" label="Saved searches" onClick={() => setMenuOpen(false)} />
             <MenuLink to="/notifications" label="Notifications" onClick={() => setMenuOpen(false)} />
@@ -193,7 +193,7 @@ function MenuLink({ to, label, onClick }: { to: string; label: string; onClick?:
     <Link
       to={to}
       onClick={onClick}
-      className="block rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100"
+      className="block rounded-lg px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-800"
     >
       {label}
     </Link>

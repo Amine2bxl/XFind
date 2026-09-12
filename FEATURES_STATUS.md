@@ -7,6 +7,8 @@ Status legend: ✅ done · 🟡 partially done · 🔌 provider-dependent (clean
 | Feature | Status | Notes |
 | --- | --- | --- |
 | Landing page | ✅ | Search-first hero, popular brands, recent listings |
+| **Dark mode** | ✅ | Full dark UI (premium, near-black surfaces, neutral ramp inverted) |
+| **Live new-arrivals feed** | ✅ | Auto-refreshing scrolling ticker (`/api/live/feed`), new items slide in, pause on hover |
 | Search page | ✅ | URL-persisted filters, debounce + autocomplete, sorting, pagination (load more) |
 | Free-text intelligence | ✅ | Brand/model/category/size/color/gender detection from plain text |
 | Filters | ✅ | Brand, category (tree), size, price, condition, colour, gender |

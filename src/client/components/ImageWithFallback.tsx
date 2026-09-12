@@ -21,7 +21,7 @@ export function ImageWithFallback({
     return (
       <div
         className={cn(
-          'flex items-center justify-center bg-neutral-100 text-neutral-300',
+          'flex items-center justify-center bg-neutral-800 text-neutral-600',
           className,
         )}
         aria-label={alt}
@@ -36,8 +36,8 @@ export function ImageWithFallback({
   }
 
   return (
-    <div className={cn('relative overflow-hidden bg-neutral-100', className)}>
-      {!loaded && <div className="absolute inset-0 animate-pulse bg-neutral-100" />}
+    <div className={cn('relative overflow-hidden bg-neutral-800', className)}>
+      {!loaded && <div className="absolute inset-0 animate-pulse bg-neutral-800" />}
       <img
         src={src}
         alt={alt}

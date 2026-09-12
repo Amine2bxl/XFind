@@ -48,28 +48,28 @@ export function SettingsPage() {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="mt-10">
-        <h1 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">Settings</h1>
-        <p className="mt-1 text-sm text-neutral-500">Account and notification preferences.</p>
+        <h1 className="text-2xl font-bold tracking-tight text-neutral-100 sm:text-3xl">Settings</h1>
+        <p className="mt-1 text-sm text-neutral-400">Account and notification preferences.</p>
       </div>
 
       <div className="mt-6 flex flex-col gap-4">
-        <section className="rounded-2xl border border-neutral-200 bg-white p-5">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-neutral-500">Profile</h2>
+        <section className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-neutral-400">Profile</h2>
           <div className="flex flex-col gap-4">
             <label className="flex flex-col gap-1.5">
-              <span className="text-xs font-medium text-neutral-600">Name</span>
+              <span className="text-xs font-medium text-neutral-400">Name</span>
               <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" />
             </label>
             <div>
-              <span className="text-xs font-medium text-neutral-600">Email</span>
-              <p className="mt-1 text-sm text-neutral-900">{user.email}</p>
+              <span className="text-xs font-medium text-neutral-400">Email</span>
+              <p className="mt-1 text-sm text-neutral-100">{user.email}</p>
             </div>
           </div>
         </section>
 
-        <section className="rounded-2xl border border-neutral-200 bg-white p-5">
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-neutral-500">Notifications</h2>
-          <div className="divide-y divide-neutral-100">
+        <section className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-neutral-400">Notifications</h2>
+          <div className="divide-y divide-neutral-800">
             <Toggle
               checked={inApp}
               onChange={setInApp}
@@ -89,12 +89,12 @@ export function SettingsPage() {
               description="Requires VAPID keys to be configured on the server."
             />
           </div>
-          <div className="mt-3 rounded-xl border border-neutral-100 bg-neutral-50 p-3">
+          <div className="mt-3 rounded-xl border border-neutral-800 bg-neutral-950 p-3">
             <div className="flex items-center gap-2">
               <Badge tone={pushStatus?.configured ? 'success' : 'neutral'}>
                 {pushStatus?.configured ? 'Configured' : 'Not configured'}
               </Badge>
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-400">
                 {pushStatus?.message ?? 'Loading push status...'}
               </p>
             </div>
@@ -102,16 +102,16 @@ export function SettingsPage() {
         </section>
 
         {message && (
-          <p className={`text-sm ${message.type === 'success' ? 'text-emerald-600' : 'text-red-600'}`}>{message.text}</p>
+          <p className={`text-sm ${message.type === 'success' ? 'text-emerald-400' : 'text-red-400'}`}>{message.text}</p>
         )}
 
         <div className="flex gap-2">
           <Button onClick={save} loading={saving}>Save changes</Button>
         </div>
 
-        <section className="rounded-2xl border border-neutral-200 bg-white p-5">
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-neutral-500">Account</h2>
-          <p className="text-sm text-neutral-500 mb-4">Sign out of this device.</p>
+        <section className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-neutral-400">Account</h2>
+          <p className="text-sm text-neutral-400 mb-4">Sign out of this device.</p>
           <Button variant="secondary" onClick={() => navigate('/')} disabled>
             Signed in as {user.email}
           </Button>

@@ -836,6 +836,18 @@ export class Database {
     return row?.c ?? 0
   }
 
+  /** Newest published listings, for the live feed / ticker. */
+  async latestPublished(limit = 40): Promise<Listing[]> {
+    const rows = await this.driver.all<ListingRow>(
+      `SELECT * FROM listings
+       WHERE is_active = 1
+       ORDER BY (published_at IS NULL) ASC, COALESCE(published_at, first_seen_at) DESC
+       LIMIT ?`,
+      [limit],
+    )
+    return rows.map(rowToListing)
+  }
+
   // ------------------------------------------------------------------
   // Favorites
   // ------------------------------------------------------------------

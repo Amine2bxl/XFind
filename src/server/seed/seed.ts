@@ -65,7 +65,7 @@ export async function seedDatabase(
   }
 
   await services.catalog.invalidate()
-  const run = await services.ingestion.run({ limit: 100 })
+  const run = await services.ingestion.run({ limit: 500 })
   await services.catalog.invalidate()
 
   return {

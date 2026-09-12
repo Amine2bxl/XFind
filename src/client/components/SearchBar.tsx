@@ -128,7 +128,7 @@ export function SearchBar({
 
   return (
     <div ref={boxRef} className="relative w-full">
-      <div className="absolute inset-y-0 left-3 flex items-center text-neutral-400 pointer-events-none">
+      <div className="absolute inset-y-0 left-3 flex items-center text-neutral-500 pointer-events-none">
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="11" cy="11" r="7" />
           <path d="m21 21-4.3-4.3" />
@@ -150,20 +150,20 @@ export function SearchBar({
         aria-controls="search-suggestions"
         aria-autocomplete="list"
         className={cn(
-          'w-full border border-neutral-200 bg-white text-neutral-900 placeholder:text-neutral-400 outline-none transition-colors focus:border-neutral-400 focus:ring-2 focus:ring-neutral-900/10',
+          'w-full border border-neutral-800 bg-neutral-900 text-neutral-100 placeholder:text-neutral-500 outline-none transition-colors focus:border-neutral-500 focus:ring-2 focus:ring-white/10',
           sizeClass,
         )}
       />
       {loading && (
         <div className="absolute inset-y-0 right-3 flex items-center">
-          <span className="h-4 w-4 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-900" />
+          <span className="h-4 w-4 animate-spin rounded-full border-2 border-neutral-700 border-t-neutral-900" />
         </div>
       )}
       {open && suggestions.length > 0 && (
         <ul
           id="search-suggestions"
           role="listbox"
-          className="absolute z-40 mt-1.5 w-full overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-lg"
+          className="absolute z-40 mt-1.5 w-full overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900 shadow-lg"
         >
           {suggestions.map((s, i) => (
             <li
@@ -177,20 +177,20 @@ export function SearchBar({
               }}
               className={cn(
                 'flex cursor-pointer items-center gap-3 px-3.5 py-2.5 text-sm',
-                i === activeIndex ? 'bg-neutral-100' : 'bg-white',
+                i === activeIndex ? 'bg-neutral-800' : 'bg-neutral-900',
               )}
             >
               <span
                 className={cn(
                   'flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-bold uppercase tracking-wide',
-                  s.type === 'brand' ? 'bg-neutral-900 text-white' : 'bg-neutral-200 text-neutral-600',
+                  s.type === 'brand' ? 'bg-neutral-900 text-white' : 'bg-neutral-700 text-neutral-400',
                 )}
               >
                 {s.type === 'brand' ? 'B' : s.type === 'model' ? 'M' : 'C'}
               </span>
-              <span className="flex-1 truncate font-medium text-neutral-900">{s.label}</span>
-              {s.brandName && <span className="text-xs text-neutral-400">{s.brandName}</span>}
-              <span className="text-[10px] text-neutral-300">{TYPE_LABEL[s.type]}</span>
+              <span className="flex-1 truncate font-medium text-neutral-100">{s.label}</span>
+              {s.brandName && <span className="text-xs text-neutral-500">{s.brandName}</span>}
+              <span className="text-[10px] text-neutral-600">{TYPE_LABEL[s.type]}</span>
             </li>
           ))}
         </ul>
