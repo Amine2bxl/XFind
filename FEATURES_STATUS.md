@@ -64,7 +64,7 @@ Status legend: ✅ done · 🟡 partially done · 🔌 provider-dependent (clean
 | RLS / Supabase migration | ✅ | `supabase/migrations/0001_init.sql` |
 | SEO | 🟡 | Client-side title/meta; SSR/OG for brand pages pending |
 | Security | ✅ | No secrets in client, server-side validation, session cookies |
-| Vercel deploy | 🟡 | Entry `api/index.ts` documented; requires Supabase Postgres |
+| Vercel deploy | ✅ | Static SPA + `/api` function (Node runtime, `pg` driver); see `docs/DEPLOYMENT.md` |
 
 ## Deliberately not built (v1 scope)
 

@@ -19,7 +19,7 @@ UI (React SPA)
    ▼
 API (Hono on Bun)
    ├─ auth        AuthProvider  (local sessions | Supabase Auth)
-   ├─ db          SqlDriver     (bun:sqlite | Bun.sql/Postgres)
+   ├─ db          SqlDriver     (bun:sqlite | pg/Postgres)
    │                └─ Database (domain repository methods, portable SQL)
    ├─ services    SearchService, ListingService, SavedSearchService,
    │              NotificationService, IngestionService, BrandService,
@@ -30,13 +30,12 @@ API (Hono on Bun)
 ## Stack
 
 - **Client:** React 18, TypeScript (strict), Vite 6, Tailwind CSS v4, react-router-dom 6
-- **Server:** TypeScript, Hono 4, running on Bun
-- **Database:** `bun:sqlite` (development), PostgreSQL via `Bun.sql` (production / Supabase)
+- **Server:** TypeScript, Hono 4, running on Bun (or Node for serverless)
+- **Database:** `bun:sqlite` (development), PostgreSQL via `pg` (production / Supabase; works on Node and Bun)
 - **Validation:** zod
 - **Package manager:** Bun
 - **Tests:** Bun test runner
-- **Deployment:** Bun server (single process in prod); Vercel entry at `api/index.ts`
-  documented for Supabase-backed deployments
+- **Deployment:** Bun server (single process in prod); Vercel static + `/api` function (see `docs/DEPLOYMENT.md`)
 
 ## Important directories
 

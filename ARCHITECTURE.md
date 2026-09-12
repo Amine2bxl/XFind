@@ -44,10 +44,11 @@ and request schemas (zod). Client and server both import from here — no drift.
 ### 2. Data access: `src/server/db`
 
 - `driver.ts` — minimal async SQL interface (`all`, `get`, `run`, `exec`).
-- `sqlite-driver.ts` — `bun:sqlite` implementation (development default).
-- `postgres-driver.ts` — `Bun.sql` implementation (production/Supabase);
-  translates `?` placeholders and imports `bun` lazily so SQLite-only dev never
-  depends on a Postgres client.
+- `sqlite-driver.ts` — `bun:sqlite` implementation (development default),
+  imported lazily so Node-focused bundles (Vercel functions) never resolve the
+  `bun:` builtin at build time.
+- `postgres-driver.ts` — `pg` implementation (production/Supabase); translates
+  `?` placeholders to `$n` and runs on both Node and Bun runtimes.
 - `database.ts` — the domain repository. This is the only file that touches SQL
   for business operations; SQL is kept portable (no PostgreSQL-only or
   SQLite-only syntax). Handles row↔domain mapping.

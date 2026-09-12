@@ -44,7 +44,7 @@ never presented as live Vinted listings.
 - **Frontend:** React 18, TypeScript, Vite, Tailwind CSS v4, react-router
 - **Backend:** TypeScript, Hono, service layer, Bun runtime
 - **Database:** portable SQL core — SQLite via `bun:sqlite` for development, or
-  PostgreSQL (Supabase) via `Bun.sql` for production
+  PostgreSQL (Supabase) via `pg` for production
   (migrations: `supabase/migrations/0001_init.sql` with RLS)
 - **Auth:** provider abstraction — `local` (email/password + sessions) for dev,
   `supabase` (Supabase Auth) for production
@@ -88,6 +88,14 @@ Provider (mock or future compliant Vinted feed)
 - [`ARCHITECTURE.md`](ARCHITECTURE.md) — module boundaries and data flow
 - [`FEATURES_STATUS.md`](FEATURES_STATUS.md) — implemented / mocked / provider-dependent
 - [`ROADMAP.md`](ROADMAP.md) — next steps
+- [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — Vercel + Supabase deployment guide
 - [`docs/VINTED_INTEGRATION.md`](docs/VINTED_INTEGRATION.md) — compliant Vinted integration path
 - [`docs/INGESTION.md`](docs/INGESTION.md) — data pipeline details
 - [`docs/SEARCH.md`](docs/SEARCH.md) — search engine, intent detection, relevance scoring
+
+## Deploying to Vercel
+
+See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md). XFind deploys as static files +
+one `/api` serverless function. Prerequisites: `DATABASE_TYPE=postgres`,
+`DATABASE_URL` (Supabase Postgres), `SESSION_SECRET` (plus Supabase auth env if
+using `AUTH_PROVIDER=supabase`).

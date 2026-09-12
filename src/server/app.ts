@@ -464,10 +464,12 @@ export function buildApp(ctx: AppContext): Hono<Env> {
   })
 
   // ------------------------------------------------------------------
-  // Static assets (production only) — SPA served from dist/client
+  // Static assets (production, self-hosted Bun server only) — SPA served from dist/client.
+  // On Vercel the static files are served by Vercel's CDN (see vercel.json), so we
+  // skip Bun.file-based serving entirely there.
   // ------------------------------------------------------------------
 
-  if (isProduction) {
+  if (isProduction && process.env.VERCEL !== '1') {
     const distDir = join(process.cwd(), 'dist', 'client')
     app.get('/favicon.svg', async (c) => {
       const file = Bun.file(join(distDir, 'favicon.svg'))
