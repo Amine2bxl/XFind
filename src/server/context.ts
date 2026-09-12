@@ -26,10 +26,10 @@ export interface AppContext {
   ingestion: IngestionService
 }
 
-export async function createContext(): Promise<AppContext> {
+export async function createContext(overrides: { dbPath?: string } = {}): Promise<AppContext> {
   const db = await openDatabase({
     type: config.database.type,
-    sqlitePath: config.database.path,
+    sqlitePath: overrides.dbPath ?? config.database.path,
     postgresUrl: config.database.url,
   })
   const registry = createProviderRegistry()

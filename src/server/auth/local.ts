@@ -1,6 +1,7 @@
 import { randomBytes } from 'node:crypto'
 import type { Database } from '../db/database'
 import { config } from '../config'
+import { hashPassword, verifyPasswordStored } from './password'
 import type { AuthProvider, AuthResult } from './types'
 
 export class LocalAuthProvider implements AuthProvider {
@@ -14,11 +15,11 @@ export class LocalAuthProvider implements AuthProvider {
     if (existing) {
       throw new AuthError('An account with this email already exists.', 409)
     }
-    const hash = await Bun.password.hash(input.password, { algorithm: 'bcrypt', cost: 10 })
+    const passwordHash = await hashPassword(input.password)
     const user = await this.db.createUser({
       id: crypto.randomUUID(),
       email,
-      passwordHash: hash,
+      passwordHash,
       name: input.name,
     })
     return { userId: user.id, user }
@@ -34,7 +35,7 @@ export class LocalAuthProvider implements AuthProvider {
     if (!hash) {
       throw new AuthError('This account has no local password. Use email login instead.', 401)
     }
-    const valid = await Bun.password.verify(input.password, hash)
+    const valid = await verifyPasswordStored(input.password, hash)
     if (!valid) {
       throw new AuthError('Invalid email or password.', 401)
     }

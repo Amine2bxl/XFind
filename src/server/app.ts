@@ -91,6 +91,7 @@ export function buildApp(ctx: AppContext): Hono<Env> {
       ok: true,
       db: listingCount === null ? 'error' : 'up',
       listings: listingCount,
+      demo: process.env.VERCEL === '1' && config.database.type === 'sqlite',
       provider: ctx.registry.status(),
     })
   })

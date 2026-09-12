@@ -17,6 +17,7 @@
     "db:set-admin": "bun run scripts/set-admin.ts"
   },
   "dependencies": {
+    "better-sqlite3": "^11.7.0",
     "hono": "^4.6.14",
     "pg": "^8.13.1",
     "react": "^18.3.1",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@tailwindcss/vite": "^4.0.0",
+    "@types/better-sqlite3": "^7.6.12",
     "@types/bun": "^1.1.14",
     "@types/node": "^22.10.2",
     "@types/pg": "^8.11.10",

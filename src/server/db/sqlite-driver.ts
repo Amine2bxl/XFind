@@ -13,12 +13,12 @@ interface SqliteDb {
 }
 
 /**
- * SQLite driver on bun:sqlite (development default).
+ * SQLite driver on bun:sqlite (local development default).
  *
- * bun:sqlite is imported lazily so that bundlers targeting Node (e.g. a Vercel
- * serverless function) never fail to resolve the `bun:` builtin. The driver is
- * only ever instantiated when DATABASE_TYPE=sqlite, which is a development-only
- * configuration.
+ * bun:sqlite is imported lazily so that bundlers targeting Node (e.g. the
+ * Vercel serverless function) never fail to resolve the `bun:` builtin.
+ * Vercel/Node runtimes use the better-sqlite3 driver instead
+ * (`node-sqlite-driver.ts`), selected in `db/index.ts#createDriver`.
  */
 export class SqliteDriver implements SqlDriver {
   private db: SqliteDb | null = null

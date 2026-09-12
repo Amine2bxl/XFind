@@ -24,7 +24,13 @@ XFind deploys to Vercel as **static files + one `/api` serverless function**
 1. Import `https://github.com/Amine2bxl/XFind` in the Vercel dashboard.
 2. Framework **Other** is forced automatically by `vercel.json`
    (`framework: null` + `buildCommand` + `outputDirectory`). Just click deploy.
-3. Add the environment variables below (Production):
+   With **no environment variables** the site deploys in **demo mode**: an
+   ephemeral SQLite database is seeded with clearly-labelled sample data, so
+   search, the live feed, account creation and favorites all work immediately.
+   A banner shows when demo mode is active; data resets on cold start and labels
+   always say "Dev data".
+3. For a persistent deployment add the environment variables below
+   (Production):
 
 | Variable | Value |
 | --- | --- |
@@ -69,8 +75,9 @@ or keep `DATABASE_TYPE=sqlite` for a single-VM demo (SQLite file on disk).
 
 | Symptom | Cause / fix |
 | --- | --- |
-| Build fails while resolving `bun:sqlite` | Should be gone: the SQLite driver imports `bun:sqlite` lazily and is never instantiated in production. |
-| `/api/*` returns `{ error: "missing_configuration" }` | `DATABASE_TYPE` / `DATABASE_URL` not set as Vercel environment variables. |
+| Site deploys but works "by default" | Demo mode: ephemeral SQLite + labelled sample data. Add `DATABASE_TYPE=postgres` + `DATABASE_URL` for persistence. |
+| Build fails while resolving `bun:sqlite` | Should be gone: the Bun SQLite driver imports `bun:sqlite` lazily and is never bundled/initialised in production. |
+| `/api/*` returns `{ error: "missing_configuration" }` | `DATABASE_TYPE=postgres` is set but `DATABASE_URL` is missing. Remove `DATABASE_TYPE` (demo mode) or add the URL. |
+| Account creation fails on the deployed site | Fixed: password hashing now uses portable `scrypt` (works on Node), not the Bun-only API. |
 | Deploy succeeds but `/` is blank | Check the browser Network tab for asset status; ensure `outputDirectory: dist/client` and that `bun run build` succeeded (assets are 200). |
-| Function runtime error about Bun | No longer required: the function runs on Vercel's standard Node runtime (driver is `pg`). |
 | Slow cold start / first load | Serverless cold start is normal. Warm with a scheduled ping or move to the self-hosted server. |

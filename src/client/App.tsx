@@ -1,6 +1,7 @@
+import { useEffect, useState, type ReactNode } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { useEffect, type ReactNode } from 'react'
 import { Header } from './components/Header'
+import { api } from './lib/api'
 import { useAuth } from './lib/auth'
 import { HomePage } from './pages/Home'
 import { SearchPage } from './pages/Search'
@@ -61,8 +62,22 @@ function RequireAdmin({ children }: { children: ReactNode }) {
 }
 
 function Layout({ children }: { children: ReactNode }) {
+  const [demo, setDemo] = useState(false)
+  useEffect(() => {
+    void api
+      .get<{ demo?: boolean }>('/api/health')
+      .then((h) => setDemo(Boolean(h.demo)))
+      .catch(() => undefined)
+  }, [])
+
   return (
     <div className="flex min-h-screen flex-col">
+      {demo && (
+        <div className="border-b border-amber-800/60 bg-amber-950/40 px-4 py-2 text-center text-xs text-amber-200">
+          <strong>Demo mode</strong> — annotated sample data (ephemeral, resets on redeploy). Set{' '}
+          <code className="rounded bg-amber-900/40 px-1">DATABASE_URL</code> (Supabase) for persistent data.
+        </div>
+      )}
       <Header />
       <main className="mx-auto w-full max-w-7xl flex-1 px-3 sm:px-6">{children}</main>
       <footer className="mt-16 border-t border-neutral-800 py-8">

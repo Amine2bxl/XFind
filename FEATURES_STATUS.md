@@ -66,7 +66,8 @@ Status legend: ✅ done · 🟡 partially done · 🔌 provider-dependent (clean
 | RLS / Supabase migration | ✅ | `supabase/migrations/0001_init.sql` |
 | SEO | 🟡 | Client-side title/meta; SSR/OG for brand pages pending |
 | Security | ✅ | No secrets in client, server-side validation, session cookies |
-| Vercel deploy | ✅ | Static SPA + `/api` function (Node runtime, `pg` driver); see `docs/DEPLOYMENT.md` |
+| Vercel deploy | ✅ | Static SPA + `/api` function (Node runtime, `pg` for Postgres / `better-sqlite3` demo fallback); see `docs/DEPLOYMENT.md` |
+| Deploy without env vars | ✅ | Auto **demo mode**: ephemeral SQLite + labelled sample data, works out of the box with a banner |
 
 ## Deliberately not built (v1 scope)
 
